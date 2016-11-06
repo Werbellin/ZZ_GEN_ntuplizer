@@ -3,10 +3,12 @@
 
 #include "../interface/CandidateNtuplizer.h"
 
+
+
 class GenParticlesNtuplizer : public CandidateNtuplizer {
 
 public:
-  GenParticlesNtuplizer( std::vector<edm::EDGetTokenT<reco::GenParticleCollection>> tokens, NtupleBranches* nBranches );
+  GenParticlesNtuplizer( std::vector<edm::EDGetTokenT<reco::GenParticleCollection>> tokens, edm::EDGetTokenT<reco::CandidateView>, NtupleBranches* nBranches );
   ~GenParticlesNtuplizer( void ); 
 
   void fillBranches( edm::Event const & event, const edm::EventSetup& iSetup );
@@ -14,6 +16,9 @@ public:
 private:
    edm::EDGetTokenT<reco::GenParticleCollection> genParticlesToken_;
    edm::Handle< reco::GenParticleCollection >  genParticles_;
+ 
+   edm::EDGetTokenT<reco::CandidateView> genParticlesTokenC_;
+   edm::Handle< reco::CandidateView >  genParticlesC_;
       
 };
 

@@ -4,6 +4,7 @@
 #include "FWCore/Framework/interface/EDAnalyzer.h"
 
 #include "FWCore/Framework/interface/Event.h"
+#include "FWCore/Framework/interface/Run.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
@@ -47,10 +48,13 @@ private:
   edm::EDGetTokenT<double>                                  rhoToken_           ;
   edm::EDGetTokenT< std::vector<PileupSummaryInfo> >        puinfoToken_        ;
   edm::EDGetTokenT< GenEventInfoProduct >                   geneventToken_      ;
+  edm::EDGetTokenT< GenRunInfoProduct >                     genrunToken_      ;
+  edm::EDGetTokenT< LHEEventProduct >                       lheToken_      ;
 
   
   edm::EDGetTokenT<reco::GenParticleCollection>             genparticleToken_   ;
-  
+  edm::EDGetTokenT<reco::CandidateView>                     genparticleTokenC_  ;
+ 
   edm::EDGetTokenT<pat::JetCollection>                      jetToken_           ;
   edm::EDGetTokenT<pat::JetCollection>                      fatjetToken_        ;
   edm::EDGetTokenT<pat::JetCollection>                      prunedjetToken_     ;

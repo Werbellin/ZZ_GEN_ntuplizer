@@ -8,7 +8,7 @@ class GenJetsNtuplizer : public CandidateNtuplizer {
 
 public:
 
- GenJetsNtuplizer( edm::EDGetTokenT<reco::GenJetCollection> token, edm::EDGetTokenT<pat::JetCollection> AK8token, NtupleBranches* nBranches );
+ GenJetsNtuplizer( edm::EDGetTokenT<reco::GenJetCollection> token, NtupleBranches* nBranches );
    ~GenJetsNtuplizer( void );
 
   void fillBranches( edm::Event const & event, const edm::EventSetup& iSetup );
@@ -16,10 +16,8 @@ public:
 private:
   
   edm::EDGetTokenT<reco::GenJetCollection> 					genJetInputToken_       ;
-  edm::EDGetTokenT<pat::JetCollection> 				    	genJetAK8InputToken_    ;
 
   edm::Handle<reco::GenJetCollection>      					genJets_         				;
-  edm::Handle<pat::JetCollection>      		    			genJetsAK8_      				;
 
 };
 

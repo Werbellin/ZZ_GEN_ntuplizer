@@ -3,6 +3,11 @@
 
 #include "../interface/NtupleBranches.h"
 
+#include "DataFormats/Candidate/interface/Candidate.h"
+#include "DataFormats/Candidate/interface/CandidateFwd.h"
+
+using namespace std;
+
 class CandidateNtuplizer{
 
 public:

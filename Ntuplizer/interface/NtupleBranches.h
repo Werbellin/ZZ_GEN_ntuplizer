@@ -25,12 +25,19 @@
 #include "DataFormats/MuonReco/interface/MuonCocktails.h"
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
 #include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/GenRunInfoProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/LHEEventProduct.h"
+
+
 #include "FWCore/Framework/interface/Event.h"
 #include "TMatrixD.h"
 #include "TMatrix.h"
 
 #include "TTree.h"
 #include "TLorentzVector.h"
+
+
+typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double>> NewLorentzVector;
 
 /*here we declare the input and output variables*/
 
@@ -63,7 +70,10 @@ public:
   std::vector<int  >              genParticle_nDau     ;
   std::vector<int  >              genParticle_nMoth    ;
   std::vector<std::vector<int> >  genParticle_mother   ; 
+  std::vector<std::vector<int> >  genParticle_mother_Idx   ; 
   std::vector<std::vector<int> >  genParticle_dau      ;
+  std::vector<int  >              genParticle_motherZindex;
+  std::vector<NewLorentzVector >  genParticle_FSR    ;
 
   /** generator info */
   float                           lheV_pt              ;
@@ -74,7 +84,14 @@ public:
   std::vector<int  >              PDF_id               ;
   std::vector<float>              PDF_x                ;
   std::vector<float>              PDF_xPDF             ;
-          
+
+
+  /** LHEEventProduct **/
+
+  
+  //std::vector< std::pair<int, float> > weights;
+  std::vector<float> weights;
+  float                           originalXWGTUP;       
   /** electrons */
   int 	                      el_N		         ;
   std::vector<int>  	      el_pdgId	                 ;

@@ -33,7 +33,10 @@ void NtupleBranches::branch( std::map< std::string, bool >& runFlags ){
       tree_->Branch( "genParticle_nMoth"     , &genParticle_nMoth      );
       tree_->Branch( "genParticle_nDau"	     , &genParticle_nDau       ); 
       tree_->Branch( "genParticle_dau"	     , &genParticle_dau        );
-    } //doGenParticles
+      tree_->Branch( "genParticle_mother_Idx"	, &genParticle_mother_Idx     );
+      tree_->Branch( "genParticle_motherZindex"	, &genParticle_motherZindex        );
+      tree_->Branch( "genParticle_FSR"	     , &genParticle_FSR        );
+  } //doGenParticles
     
     if ( runFlags["doGenEvent"] ){
       /** generator info */
@@ -45,8 +48,17 @@ void NtupleBranches::branch( std::map< std::string, bool >& runFlags ){
       tree_->Branch( "PDF_x"	             , &PDF_x                  );
       tree_->Branch( "PDF_xPDF"	             , &PDF_xPDF               );
       tree_->Branch( "PDF_id"	             , &PDF_id                 );
+
+      tree_->Branch( "lhe_weights"               , &weights                );
+      tree_->Branch( "originalXWGTUP"        , &originalXWGTUP                );
+
     } //doGenEvent
+
+
+
+
   } //runOnMC
+
   
   if ( runFlags["doElectrons"] ){
     /** electrons */
@@ -593,7 +605,9 @@ void NtupleBranches::reset( void ){
   genParticle_nMoth.clear();
   genParticle_nDau.clear();
   genParticle_dau.clear();
-  
+  genParticle_mother_Idx.clear();
+  genParticle_motherZindex.clear();
+  genParticle_FSR.clear();
   /** generator info */
   lheV_pt     = 0;
   lheHT       = 0;

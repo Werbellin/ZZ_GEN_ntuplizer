@@ -18,7 +18,7 @@ GenEventNtuplizer::~GenEventNtuplizer( void )
 void GenEventNtuplizer::fillBranches( edm::Event const & event, const edm::EventSetup& iSetup ){
 
   event.getByToken(geneventToken_, geneventInfo_);  
-  
+
   nBranches_->genWeight=geneventInfo_->weight();
   nBranches_->qScale=geneventInfo_->qScale();
   nBranches_->PDF_x.push_back((geneventInfo_->pdf()->x).first);
